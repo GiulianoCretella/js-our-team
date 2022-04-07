@@ -34,3 +34,28 @@ let teamArray = [
         jobTitle : 'Graphic Designer'
     }
 ];
+
+// tramite ciclo for faccio ciclare gli oggetti contenuti negli arrai e creo elementi da stampare nell'html
+
+let teamContainer = document.querySelector('.team-container');
+for(let i = 0 ; i < teamArray.length;i++){
+    let teamCard = document.createElement('div');
+    teamCard.setAttribute('class','team-card');
+
+    let cardImage = document.createElement('div');
+    cardImage.setAttribute('class','card-image');
+    cardImage.innerHTML+=
+    `<img src="./img/${teamArray[i].immagine}" alt="${teamArray[i].nome}">`;
+
+    let cardText = document.createElement('div');
+    cardText.setAttribute('class','card-text');
+    cardText.innerHTML+= 
+    `<h3>${teamArray[i].nome}</h3>
+    <p>${teamArray[i].jobTitle}</p>`;
+
+    teamCard.append(cardImage);
+    teamCard.append(cardText);
+    console.log(teamCard);
+    teamContainer.append(teamCard)
+}
+
