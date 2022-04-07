@@ -34,28 +34,56 @@ let teamArray = [
         jobTitle : 'Graphic Designer'
     }
 ];
-
-// tramite ciclo for faccio ciclare gli oggetti contenuti negli arrai e creo elementi da stampare nell'html
-
 let teamContainer = document.querySelector('.team-container');
-for(let i = 0 ; i < teamArray.length;i++){
-    let teamCard = document.createElement('div');
-    teamCard.setAttribute('class','team-card');
+// tramite ciclo for faccio ciclare gli oggetti contenuti negli arrai e creo elementi da stampare nell'html
+printCard()
+function printCard(){
+    
+    for(let i = 0 ; i < teamArray.length;i++){
+        let teamCard = document.createElement('div');
+        teamCard.setAttribute('class','team-card');
 
-    let cardImage = document.createElement('div');
-    cardImage.setAttribute('class','card-image');
-    cardImage.innerHTML+=
-    `<img src="./img/${teamArray[i].immagine}" alt="${teamArray[i].nome}">`;
+        let cardImage = document.createElement('div');
+        cardImage.setAttribute('class','card-image');
+        cardImage.innerHTML+=
+        `<img src="./img/${teamArray[i].immagine}" alt="${teamArray[i].nome}">`;
 
-    let cardText = document.createElement('div');
-    cardText.setAttribute('class','card-text');
-    cardText.innerHTML+= 
-    `<h3>${teamArray[i].nome}</h3>
-    <p>${teamArray[i].jobTitle}</p>`;
+        let cardText = document.createElement('div');
+        cardText.setAttribute('class','card-text');
+        cardText.innerHTML+= 
+        `<h3>${teamArray[i].nome}</h3>
+        <p>${teamArray[i].jobTitle}</p>`;
 
-    teamCard.append(cardImage);
-    teamCard.append(cardText);
-    console.log(teamCard);
-    teamContainer.append(teamCard)
+        teamCard.append(cardImage);
+        teamCard.append(cardText);
+        console.log(teamCard);
+        teamContainer.append(teamCard)
+    }
 }
+// prendo i valori degli input tramite il click sul bottone con una funzione
+
+let addMemberButton = document.getElementById('addMemberButton');
+
+addMemberButton.addEventListener('click',addMemberFunction);
+
+function addMemberFunction(){
+    let name = document.getElementById('name').value;
+    console.log(name)
+    let role = document.getElementById('role').value;
+    console.log(role);
+    let image = document.getElementById('image').value;
+    console.log(image);
+    let newMember = {
+        immagine : image,
+        nome : name,
+        jobTitle : role
+    }   
+    teamArray.push(newMember); 
+    console.log(teamArray);
+    teamContainer.innerHTML ='';
+    printCard()
+}
+
+
+
 
